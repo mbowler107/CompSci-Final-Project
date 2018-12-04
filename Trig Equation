@@ -8,55 +8,85 @@
 #define PI 3.14159265
 using namespace std;
 
-double hypo(double h, double a, double b);
-double angleA(double A, double a, double b, double h);
+double hypo(double side1, double side2); 
+double asinAngleA(double side1, double side2, double h);
+double asinAngleB(double side1, double side2, double h);
 
 
 
-double hypo(double h, double a, double b)
+double hypo(double side1, double side2) //used to calculate the hypotenuse
 {
-	
-	h = sqrt(pow(a, 2) + pow(b, 2));
+	double h;
+	h = sqrt(pow(side1, 2) + pow(side2, 2));
 	return h;
 }
-double angleA(double A,double a,double b, double h)
+double asinAngleA(double side1, double side2, double h) //used to calculate the sine of Angle A
 {
-	
-	A = asin(a / double(h)) || acos(b / double (h));
-	 
-	
-	
-	return A*180/PI;
-}
-double B(double B, double a, double b, double h)
-{
-	B = asin(b / h);
-	B = acos(a / h);
-	
-	return B;
+	double asinA; 
+	asinA = asin(side1 / double(h));
+
+	return asinA * 180 / PI;
 }
 
+double acosAngleA(double side1, double side2, double h) //used to calculate the cosine of Angle A
+{
+	double acosA;
+	acosA = acos(side2 / double(h));
+	return acosA *180 / PI;
+}
+
+double asinAngleB(double side1, double side2, double h) //used to calculate the sin of Angle B
+{
+	double asinB;
+	asinB = asin(side2 / h);
+	return asinB * 180 / PI;
+}
+
+double acosAngleB(double side1, double side2, double h) //used to calculate the cosine of Angle B
+{
+	double B;
+	B = acos(side1 / double(h));
+	return B * 180 / PI;
+}
 
 int main()
-{												
-	double a = {}, b = {}, A = {}, h = {};
-	h = hypo(h, a, b);
-	 
-	
-	cout << "Please input a value for a and b. \n";
-	cout << "a = ";
-	cin >> a;
+{
+	double side1, side2, asinA, acosA, asinB, acosB, h;
+	cout << "Welcome! " << endl << "This is a simple trigonometric program designed to calculate the dimensions and angles of a right triangle." << endl;
 	cout << endl;
-	cout << "b =";
-	cin >> b;
+		cout << "       /|  " << endl;
+		cout << "      / |   " << endl;
+		cout << "     /  |   " << endl;
+		cout << "    /   |     "  << endl;
+		cout << " h /    |  a " << endl;
+		cout << "  /    _|  " << endl;
+		cout << " /____|_| " << endl;
+		cout << "     b      " << endl; // a little graphic to give the viewer context (and to add a little fun to the program! :)
+	cout << "First, please input a value for a and b. \n";
+	cout << "a = "; //a == side1
+	cin >> side1;
 	cout << endl;
-	cout << "h=" << h << endl;
+	cout << "b = "; //b == side2
+	cin >> side2;
+	cout << endl;
+	h = hypo(side1, side2);
+	cout << "The hypotenuse (h) equals " << h << endl;
+
+	asinA = asinAngleA(side1, side2, h);
 	
-	A = angleA(A, a, b, h);
+	cout << "Sine of Angle A:" << asinA << " Degrees" << endl;
+
+	acosA = acosAngleA(side1, side2, h);
+
+	cout << "Cosine of Angle A: " << acosA << " Degrees" << endl;
 	
-	cout << "Angle A:" << A << endl;
-	
+	asinB = asinAngleB(side1, side2, h);
+
+	cout << "Sine of Angle B: " << asinB << " Degrees" << endl;
+
+	acosB = acosAngleB(side1, side2, h);
+
+	cout << "Cosine of Angle B: " << acosB << " Degrees" << endl;
 
 	return 0;
 }
-
